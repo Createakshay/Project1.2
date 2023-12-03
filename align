@@ -1,0 +1,38 @@
+
+import numpy as np
+
+
+
+
+try:
+      n1=int(input("enter array value 1 :- "))
+      n2=int(input("enter array value 2 :- "))
+      n3=int(input("enter array value 3 :- "))
+      n4=int(input("enter array value 4 :- "))
+      n5=int(input("enter array value 5 :- "))
+      n6=int(input("enter array value 6 :- "))
+      n7=int(input("enter array value 7 :- "))
+      n8=int(input("enter array value 8 :- "))
+      n9=int(input("enter array value 9 :- "))
+      a1=np.array([n1,n2,n3,n4,n5,n6,n7,n8,n9])
+      #type(a1)
+      print(a1)
+      c=a1.size
+      a=type(c)
+      print(a)
+      print(c)
+
+      for i in range(c-1):
+         #print(a1[i])
+         mini=i
+         for j in range(i+1,c):
+          if a1[j]<a1[i] :
+            mini=j 
+            a1[mini],a1[i]=a1[i],a1[mini]
+
+
+
+except:
+      print("error")
+
+print(a1)

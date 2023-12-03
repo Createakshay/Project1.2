@@ -1,0 +1,31 @@
+import json
+import re
+
+class commentread:
+  #v= open("comment.txt","r+b")
+  v= open("comment.txt","r+b")
+  a=v.read()
+  e= str(a)
+  def ref1(self):
+     print()
+     self.f=self.e
+     #print(f)
+     print(self.f)     
+     #data=[1,2,3,4,5,6,7,12,3,4]
+     #p=json.load(f,parse_str="")
+     #print(p.read())
+
+#i="class is for tomorrow"    
+class A(commentread):
+   def ref(self):
+    
+    
+    n=re.split("\s",self.f)
+    #m=re.search("\s",self.f)
+    for i in n:
+       print(i)
+       #print("first space","",m.start())
+
+obj=A()
+obj.ref1()
+obj.ref()
