@@ -1,0 +1,23 @@
+#uc= eval(input("enter the value:-"))
+l1= [3,7,6,9,10,56,90,66,33]
+#l1.append
+print(l1)
+l= len(l1)
+for i in range(l-1):
+ mini=i
+ for j in range(i+1,l) :
+  if i%2 == 0 :
+   if l1[i]<l1[j] :
+    mini = j
+    l1[i],l1[mini]=l1[mini],l1[i]
+  elif i%2 != 0 :
+   if l1[i]>l1[j] :
+    mini = j
+    l1[i],l1[mini]=l1[mini],l1[i]
+
+print(l1)
+  
+
+
+ 	
+
