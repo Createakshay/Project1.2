@@ -1,0 +1,111 @@
+import pymysql.cursors
+e=pymysql.connect(host="localhost",user="root",password="",database="school")
+#sql1=pymysql.connect(host="localhost",user="root",password="",database="school")
+obj=e.cursor()
+class A:
+  def __init__(self,ipid,ipname,iprno,ipclass):
+    self.ipid=ipid
+    self.ipname=ipname
+    self.iprno=iprno
+    self.ipclass=ipclass
+
+  def insertdb(self):
+    #ipid=int(input("Enter the student ID:-"))
+    ipname=str(input("Enter the student name:-"))
+    iprno=int(input("Enter the student rollno:-"))
+    ipclass=eval(input("Enter the student class:-"))
+    
+    try:
+      f="INSERT INTO student (st_name,st_rno,st_class) VALUES(%s,%s,%s) "
+      p=(ipname,iprno,ipclass)
+      obj.execute(f,p)
+      e.commit();
+      print("table Inserted")
+    except:
+      print("dtatbae err")
+   
+  def updatedb(self):
+    ipid=int(input("Enter the student ID:-"))
+    ipname=str(input("Enter the student name:-"))
+    iprno=int(input("Enter the student rollno:-"))
+    ipclass=eval(input("Enter the student class:-"))
+    
+    try:
+      f="UPDATE student set st_name=%s,st_rno=%s,st_class=%s where st_id=%s"
+      p=(ipname,iprno,ipclass,ipids)
+      obj.execute(f,p)
+      e.commit();
+      print("table Updated")
+    except:
+      print("dtatbae err")
+
+  def showdb(self):
+    
+    print("{:<15} {:<20} {:<20} {:<10}".format("student ID","student name","student rollno","student class"))
+
+    try:
+      f= "Select * from student"
+      obj.execute(f)
+      alldata=obj.fetchall()
+      for s in alldata:
+          
+          print("{:<15} {:<20} {:<20} {:<10}".format(s[0],s[1],s[2],s[3]))
+
+    except:
+      print("error")
+    
+  def deletedb(self):
+    
+    id=input("enter the id")
+    f= "DELETE from student WHERE st_id=%s"
+    try:
+      obj.execute(f,id)
+      e.commit();
+      print("deleted")
+    except:
+      print("error")
+
+  def searchdb(self):
+    ipname=str(input("Enter the student name:-"))
+    #iprno=int(input("Enter the student rollno:-"))
+    #ipclass=eval(input("Enter the student class:-"))
+    print("{:<15} {:<20} {:<20} {:<10}".format("student ID","student name","student rollno","student class"))
+    try:
+      f="SELECT * from student where st_name='"+ipname+"'"
+      #p=(ipname,iprno,ipclass)
+      obj.execute(f)
+      e.commit();
+      cobj=obj.fetchall()
+      print("table search")
+      for n in cobj:
+          print("{:<15} {:<20} {:<20} {:<10}".format(n[0],n[1],n[2],n[3]))
+
+    except:
+      print("dtatbae err")
+  
+
+objclass=A(None,None,None,None)
+while True:
+     uc=int(input('''
+                 SELECT YOUR CHOICE
+                 1.Show table
+                 2.Insert into database
+                 3.Update
+                 4.Delete
+                 5.Search
+                 6.Exit
+
+                 :- '''))
+     if uc==1:
+        objclass.showdb()
+     elif uc==2:
+        objclass.insertdb()
+     elif uc==3:
+        objclass.updatedb()
+     elif uc==4:
+        objclass.deletedb()
+     elif uc==5:
+        objclass.searchdb()
+     else:
+        print("exited")   
+        break
